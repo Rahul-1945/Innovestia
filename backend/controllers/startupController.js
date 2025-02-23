@@ -1,4 +1,5 @@
 import Startup from '../models/Startup.js';
+import mongoose from 'mongoose';
 
 
 // @desc    Create a new startup
@@ -12,6 +13,11 @@ export const createStartup = async (req, res) => {
   }
 
   try {
+
+    console.log('Logged-in user:', req.user)
+
+    const userId = new mongoose.Types.ObjectId(req.user.id);
+
     // Create the startup with the logged-in user's ID
     const startup = await Startup.create({
       name,
@@ -19,7 +25,7 @@ export const createStartup = async (req, res) => {
       industry,
       fundingNeeds,
       pitchDeck,
-      userId: req.user._id, // Ensure this is set correctly
+      userId // Ensure this is set correctly
     });
 
     res.status(201).json(startup);
