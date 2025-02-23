@@ -1,20 +1,30 @@
 import Startup from '../models/Startup.js';
 
+
 // @desc    Create a new startup
 // @route   POST /api/startups
 export const createStartup = async (req, res) => {
   const { name, description, industry, fundingNeeds, pitchDeck } = req.body;
+
+  // Validate input
+  if (!name || !description || !industry || !fundingNeeds || !pitchDeck) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
   try {
+    // Create the startup with the logged-in user's ID
     const startup = await Startup.create({
       name,
       description,
       industry,
       fundingNeeds,
       pitchDeck,
-      userId: req.user._id,
+      userId: req.user._id, // Ensure this is set correctly
     });
+
     res.status(201).json(startup);
   } catch (err) {
+    console.error('Error in createStartup:', err);
     res.status(500).json({ message: 'Server Error' });
   }
 };
