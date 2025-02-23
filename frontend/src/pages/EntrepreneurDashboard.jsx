@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Card from '../components/Card';
 import axiosInstance from '../api/axios';
 import { useState,useEffect } from 'react';
@@ -65,11 +64,11 @@ export default function EntrepreneurDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {investors.map((investor) => (
             <Card key={investor._id}>
-              <h2 className="text-xl font-bold mb-4">{investor.name}</h2>
-              <p>{investor.industryPreferences.join(', ')}</p>
+              <h2 className="text-xl font-bold mb-4 text-white">{investor.name}</h2>
+              <p className="text-white">{investor.industryPreferences.join(', ')}</p>
               <button
                 onClick={() => handlePitch(investor._id)}
-                className="mt-4 bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                className="mt-4 bg-white text-black px-4 py-2 rounded-md hover:bg-gray-100 transition-colors"
               >
                 Pitch Idea
               </button>
@@ -77,7 +76,6 @@ export default function EntrepreneurDashboard() {
           ))}
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

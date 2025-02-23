@@ -29,7 +29,7 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link
-              to="#"
+              to="/"
               onClick={handleHomeClick}
               className="text-2xl font-bold text-black"
             >

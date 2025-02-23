@@ -1,7 +1,6 @@
 import { useState,useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import axiosInstance from '../api/axios';
@@ -37,7 +36,7 @@ export default function Signup() {
         role, // Include the selected role
       });
       localStorage.setItem('token', response.data.token); // Save token to localStorage
-      navigate('/dashboard'); // Redirect to dashboard
+      navigate('/entrepreneurdashboard'); // Redirect to dashboard
     } catch (err) {
       setError('Signup failed. Please try again.');
       console.error('Signup error:', err);
@@ -93,7 +92,6 @@ export default function Signup() {
           </p>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

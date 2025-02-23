@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import axiosInstance from '../api/axios';
@@ -11,6 +10,7 @@ export default function CreateStartup() {
   const [description, setDescription] = useState('');
   const [industry, setIndustry] = useState('');
   const [fundingNeeds, setFundingNeeds] = useState('');
+  const [pitchdeck, setpitchdeck] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -22,9 +22,10 @@ export default function CreateStartup() {
         description,
         industry,
         fundingNeeds,
+        pitchdeck
       });
       alert('Startup created successfully!');
-      navigate('/entrepreneur-dashboard'); // Redirect to the entrepreneur dashboard
+      navigate('/entrepreneurdashboard'); // Redirect to the entrepreneur dashboard
     } catch (err) {
       setError('Failed to create startup. Please try again.');
       console.error('Create startup error:', err);
@@ -66,12 +67,18 @@ export default function CreateStartup() {
             onChange={(e) => setFundingNeeds(e.target.value)}
             className="mb-6"
           />
+          <Input
+            type="text"
+            placeholder="Pitch Deck"
+            value={pitchdeck}
+            onChange={(e) => setpitchdeck(e.target.value)}
+            className="mb-6"
+          />
           <Button type="submit" className="w-full">
             Create Startup
           </Button>
         </form>
       </main>
-      <Footer />
     </div>
   );
 }

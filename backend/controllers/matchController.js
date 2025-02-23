@@ -34,7 +34,9 @@ export const generateMatches = async (req, res) => {
 // @route   GET /api/matches
 export const getMatches = async (req, res) => {
   try {
-    const matches = await Match.find();
+    const matches = await Match.find()
+      .populate('startupId', 'name') // Populate the startup name
+      .populate('investorId', 'name'); // Populate the investor name
     res.json(matches);
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });

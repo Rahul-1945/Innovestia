@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import axiosInstance from '../api/axios';
@@ -45,7 +44,6 @@ export default function BusinessPlan() {
         )}
         {error && <p className="text-red-500 mt-4">{error}</p>}
       </main>
-      <Footer />
     </div>
   );
 }
