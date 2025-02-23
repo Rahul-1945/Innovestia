@@ -1,5 +1,6 @@
 import BusinessPlan from '../models/BusinessPlan.js';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import mongoose from 'mongoose';
 
 // Initialize Gemini API
 const genAI = new GoogleGenerativeAI('AIzaSyAOXWmektkV5iGspR36GwJqwFlAMnOLiEI');
@@ -19,6 +20,8 @@ export const generateBusinessPlan = async (req, res) => {
   console.log("Gemini API Key:", process.env.GEMINI_API_KEY ? "Exists" : "Missing");
 
   try {
+
+    const startupId = new mongoose.Types.ObjectId(req.user.id);
     // Get the generative model
     const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
 
@@ -32,7 +35,7 @@ export const generateBusinessPlan = async (req, res) => {
 
     // Save the business plan to the database
     const businessPlan = await BusinessPlan.create({
-      startupId: req.user._id,
+      startupId,
       planContent,
     });
 

@@ -34,21 +34,28 @@ export const signup = async (req, res) => {
 // @desc    Login user
 // @route   POST /api/auth/login
 export const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, role } = req.body;
+
   try {
     const user = await User.findOne({ email });
-    if (user && bcrypt.compareSync(password, user.password)) {
-      res.json({
-          _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        token: generateToken(user._id),
-        message:"Welcome Back Chief"
-      });
-    } else {
-      res.status(401).json({ message: 'Invalid email or password' });
+
+    if (!user || user.role !== role) {
+      return res.status(401).json({ message: 'Invalid email, password, or role' });
     }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid email, password, or role' });
+    }
+
+    const token = generateToken(user._id);
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      token,
+    });
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
   }

@@ -1,18 +1,23 @@
 import Investor from '../models/Investor.js';
+import mongoose from 'mongoose';
 
 // @desc    Create/update investor profile
 // @route   POST /api/investors
 export const createInvestor = async (req, res) => {
   const { investmentCapacity, riskLevel, industryPreferences } = req.body;
   try {
+
+    const userId = new mongoose.Types.ObjectId(req.user.id);
+
     const investor = await Investor.create({
-      userId: req.user._id,
+      userId,
       investmentCapacity,
       riskLevel,
       industryPreferences,
     });
     res.status(201).json(investor);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: 'Server Error' });
   }
 };
