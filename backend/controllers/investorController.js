@@ -1,11 +1,11 @@
-import { create, find } from '../models/Investor.js';
+import Investor from '../models/Investor.js';
 
 // @desc    Create/update investor profile
 // @route   POST /api/investors
-export async function createInvestor(req, res) {
+export const createInvestor = async (req, res) => {
   const { investmentCapacity, riskLevel, industryPreferences } = req.body;
   try {
-    const investor = await create({
+    const investor = await Investor.create({
       userId: req.user._id,
       investmentCapacity,
       riskLevel,
@@ -15,15 +15,15 @@ export async function createInvestor(req, res) {
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
   }
-}
+};
 
 // @desc    Get all investors
 // @route   GET /api/investors
-export async function getInvestors(req, res) {
+export const getInvestors = async (req, res) => {
   try {
-    const investors = await find();
+    const investors = await Investor.find();
     res.json(investors);
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
   }
-}
+};

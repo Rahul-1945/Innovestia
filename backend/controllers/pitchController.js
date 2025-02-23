@@ -1,12 +1,12 @@
-import { create } from '../models/PitchEvaluation.js';
-import { post } from 'axios';
+import PitchEvaluation from '../models/PitchEvaluation.js';
+import axios from 'axios';
 
 // @desc    Evaluate pitch
 // @route   POST /api/pitch-evaluation
-export async function evaluatePitch(req, res) {
+export const evaluatePitch = async (req, res) => {
   const { pitchDeck } = req.body;
   try {
-    const response = await post('https://api.openai.com/v1/completions', {
+    const response = await axios.post('https://api.openai.com/v1/completions', {
       model: 'text-davinci-003',
       prompt: `Evaluate this pitch deck: ${pitchDeck}`,
       max_tokens: 150,
@@ -17,7 +17,7 @@ export async function evaluatePitch(req, res) {
     });
 
     const evaluationResult = response.data.choices[0].text;
-    const pitchEvaluation = await create({
+    const pitchEvaluation = await PitchEvaluation.create({
       startupId: req.user._id,
       evaluationResult,
     });
@@ -26,4 +26,4 @@ export async function evaluatePitch(req, res) {
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
   }
-}
+};

@@ -1,9 +1,9 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
-const matchSchema = new Schema({
-  startupId: { type: Schema.Types.ObjectId, ref: 'Startup', required: true },
-  investorId: { type: Schema.Types.ObjectId, ref: 'Investor', required: true },
+const matchSchema = new mongoose.Schema({
+  startupId: { type: mongoose.Schema.Types.ObjectId, ref: 'Startup', required: true },
+  investorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Investor', required: true },
   matchScore: { type: Number, required: true },
 });
 
-export default model('Match', matchSchema);
+export default mongoose.model('Match', matchSchema);

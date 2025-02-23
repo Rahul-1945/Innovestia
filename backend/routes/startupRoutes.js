@@ -1,6 +1,6 @@
-import { Router } from 'express';
+import express from 'express';
 import { createStartup, getStartups, getStartupById } from '../controllers/startupController.js';
-const router = Router();
+const router = express.Router();
 
 router.post('/', createStartup);
 router.get('/', getStartups);

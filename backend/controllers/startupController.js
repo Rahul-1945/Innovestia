@@ -1,11 +1,11 @@
-import { create, find, findById } from '../models/Startup.js';
+import Startup from '../models/Startup.js';
 
 // @desc    Create a new startup
 // @route   POST /api/startups
-export async function createStartup(req, res) {
+export const createStartup = async (req, res) => {
   const { name, description, industry, fundingNeeds, pitchDeck } = req.body;
   try {
-    const startup = await create({
+    const startup = await Startup.create({
       name,
       description,
       industry,
@@ -17,24 +17,24 @@ export async function createStartup(req, res) {
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
   }
-}
+};
 
 // @desc    Get all startups
 // @route   GET /api/startups
-export async function getStartups(req, res) {
+export const getStartups = async (req, res) => {
   try {
-    const startups = await find();
+    const startups = await Startup.find();
     res.json(startups);
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
   }
-}
+};
 
 // @desc    Get a specific startup
 // @route   GET /api/startups/:id
-export async function getStartupById(req, res) {
+export const getStartupById = async (req, res) => {
   try {
-    const startup = await findById(req.params.id);
+    const startup = await Startup.findById(req.params.id);
     if (!startup) {
       return res.status(404).json({ message: 'Startup not found' });
     }
@@ -42,4 +42,4 @@ export async function getStartupById(req, res) {
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
   }
-}
+};

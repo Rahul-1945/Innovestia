@@ -1,6 +1,6 @@
-import { Router } from 'express';
+import express from 'express';
 import { evaluatePitch } from '../controllers/pitchController.js';
-const router = Router();
+const router = express.Router();
 
 router.post('/', evaluatePitch);
 

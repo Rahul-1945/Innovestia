@@ -1,13 +1,13 @@
-import { insertMany, find } from '../models/Match.js';
-import { find as _find } from '../models/Startup.js';
-import { find as __find } from '../models/Investor.js';
+import Match from '../models/Match.js';
+import Startup from '../models/Startup.js';
+import Investor from '../models/Investor.js';
 
 // @desc    Generate matches
 // @route   POST /api/matches
-export async function generateMatches(req, res) {
+export const generateMatches = async (req, res) => {
   try {
-    const startups = await _find();
-    const investors = await __find();
+    const startups = await Startup.find();
+    const investors = await Investor.find();
 
     const matches = [];
     startups.forEach((startup) => {
@@ -23,20 +23,20 @@ export async function generateMatches(req, res) {
       });
     });
 
-    await insertMany(matches);
+    await Match.insertMany(matches);
     res.status(201).json(matches);
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
   }
-}
+};
 
 // @desc    Get all matches
 // @route   GET /api/matches
-export async function getMatches(req, res) {
+export const getMatches = async (req, res) => {
   try {
-    const matches = await find();
+    const matches = await Match.find();
     res.json(matches);
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
   }
-}
+};

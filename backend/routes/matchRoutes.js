@@ -1,6 +1,6 @@
-import { Router } from 'express';
+import express from 'express';
 import { generateMatches, getMatches } from '../controllers/matchController.js';
-const router = Router();
+const router = express.Router();
 
 router.post('/', generateMatches);
 router.get('/', getMatches);

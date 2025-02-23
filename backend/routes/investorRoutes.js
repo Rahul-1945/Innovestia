@@ -1,6 +1,6 @@
-import { Router } from 'express';
+import express from 'express';
 import { createInvestor, getInvestors } from '../controllers/investorController.js';
-const router = Router();
+const router = express.Router();
 
 router.post('/', createInvestor);
 router.get('/', getInvestors);

@@ -1,10 +1,10 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
-const investorSchema = new Schema({
-  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+const investorSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   investmentCapacity: { type: Number, required: true },
   riskLevel: { type: String, required: true },
   industryPreferences: { type: [String], required: true },
 });
 
-export default model('Investor', investorSchema);
+export default mongoose.model('Investor', investorSchema);

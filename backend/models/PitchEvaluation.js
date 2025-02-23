@@ -1,8 +1,8 @@
-import { Schema, model } from 'mongoose';
+import mongoose from 'mongoose';
 
-const pitchEvaluationSchema = new Schema({
-  startupId: { type: Schema.Types.ObjectId, ref: 'Startup', required: true },
+const pitchEvaluationSchema = new mongoose.Schema({
+  startupId: { type: mongoose.Schema.Types.ObjectId, ref: 'Startup', required: true },
   evaluationResult: { type: String, required: true },
 });
 
-export default model('PitchEvaluation', pitchEvaluationSchema);
+export default mongoose.model('PitchEvaluation', pitchEvaluationSchema);
