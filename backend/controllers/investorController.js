@@ -4,23 +4,28 @@ import mongoose from 'mongoose';
 // @desc    Create/update investor profile
 // @route   POST /api/investors
 export const createInvestor = async (req, res) => {
-  const { investmentCapacity, riskLevel, industryPreferences } = req.body;
   try {
+    const { investmentCapacity, riskLevel, industryPreferences, userId,name } = req.body;
 
-    const userId = new mongoose.Types.ObjectId(req.user.id);
+    if (!userId) {
+      return res.status(400).json({ message: 'User ID is required' });
+    }
 
     const investor = await Investor.create({
-      userId,
+      userId: new mongoose.Types.ObjectId(userId),
       investmentCapacity,
       riskLevel,
       industryPreferences,
+      name
     });
+
     res.status(201).json(investor);
   } catch (err) {
-    console.log(err);
+    console.error('Server Error:', err);
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
 
 // @desc    Get all investors
 // @route   GET /api/investors

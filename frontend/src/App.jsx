@@ -8,6 +8,7 @@ import BusinessPlan from './pages/BusinessPlan';
 import InvestorDashboard from './pages/InvestorDashboard';
 import EntrepreneurDashboard from './pages/EntrepreneurDashboard';
 import CreateStartup from './pages/CreateStartup';
+import InvestorPreference from './pages/InvestorPreference'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/matchmaking" element={<Matchmaking />} />
         <Route path="/business-plan" element={<BusinessPlan />} />
         <Route path="/createstartup" element={<CreateStartup />} />
+        <Route path="/investorpreference" element={<InvestorPreference/>} />
       
       </Routes>
     </Router>

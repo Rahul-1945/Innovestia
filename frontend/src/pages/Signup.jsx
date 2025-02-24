@@ -51,13 +51,17 @@ export default function Signup() {
           <h2 className="text-2xl font-bold mb-6">Signup</h2>
           {error && <p className="text-red-500 mb-4">{error}</p>}
           <form onSubmit={handleSubmit}>
-            <Input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="mb-4"
-            />
+          <div className="mb-4">
+          <label className="block text-sm font-medium mb-2">Name</label>
+          <Input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          />
+          </div>
+          <div className="mb-4">
+          <label className="block text-sm font-medium mb-2">Email</label>
             <Input
               type="email"
               placeholder="Email"
@@ -65,6 +69,9 @@ export default function Signup() {
               onChange={(e) => setEmail(e.target.value)}
               className="mb-4"
             />
+            </div>
+            <div className="mb-4">
+           <label className="block text-sm font-medium mb-2">Password</label>
             <Input
               type="password"
               placeholder="Password"
@@ -72,6 +79,7 @@ export default function Signup() {
               onChange={(e) => setPassword(e.target.value)}
               className="mb-4"
             />
+            </div>
             <div className="mb-6">
               <label className="block text-sm font-medium mb-2">Role</label>
               <select

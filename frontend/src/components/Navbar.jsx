@@ -24,14 +24,14 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className=" fixed w-dvw backdrop-blur-md  z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link
               to="/"
               onClick={handleHomeClick}
-              className="text-2xl font-bold text-black"
+              className="text-2xl font-bold text-black hover:text-gray-700 transition-colors duration-200"
             >
               THRIVE X
             </Link>
@@ -39,44 +39,41 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             {token ? (
               <>
-                {/* Show role-specific navigation links */}
                 {role === 'entrepreneur' && (
                   <>
                     <Link
                       to="/pitch-evaluation"
-                      className="text-black hover:text-gray-700"
+                      className="text-black hover:text-gray-700 transition-colors duration-200"
                     >
                       Pitch Evaluation
                     </Link>
                     <Link
                       to="/business-plan"
-                      className="text-black hover:text-gray-700"
+                      className="text-black hover:text-gray-700 transition-colors duration-200"
                     >
                       Business Plan
                     </Link>
                   </>
                 )}
-                {role === 'investor' && (
-                  <Link
-                    to="/matchmaking"
-                    className="text-black hover:text-gray-700"
-                  >
-                    Matchmaking
-                  </Link>
-                )}
                 <button
                   onClick={handleLogout}
-                  className="text-black hover:text-gray-700"
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-all font-medium text-sm"
                 >
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link to="/login" className="text-black hover:text-gray-700">
+                <Link 
+                  to="/login" 
+                  className="text-black hover:text-gray-700 transition-colors duration-200"
+                >
                   Login
                 </Link>
-                <Link to="/signup" className="text-black hover:text-gray-700">
+                <Link 
+                  to="/signup" 
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-all font-medium text-sm"
+                >
                   Signup
                 </Link>
               </>

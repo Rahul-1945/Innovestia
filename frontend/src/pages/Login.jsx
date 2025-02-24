@@ -59,6 +59,8 @@ export default function Login() {
           <h2 className="text-2xl font-bold mb-6">Login</h2>
           {error && <p className="text-red-500 mb-4">{error}</p>}
           <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+          <label className="block text-sm font-medium mb-2">Email</label>
             <Input
               type="email"
               placeholder="Email"
@@ -66,6 +68,9 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
               className="mb-4"
             />
+            </div>
+            <div className="mb-4">
+          <label className="block text-sm font-medium mb-2">Password</label>
             <Input
               type="password"
               placeholder="Password"
@@ -73,6 +78,7 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               className="mb-4"
             />
+            </div>
             <div className="mb-6">
               <label className="block text-sm font-medium mb-2">Role</label>
               <select

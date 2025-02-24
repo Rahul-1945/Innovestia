@@ -1,14 +1,14 @@
 import Startup from '../models/Startup.js';
-import mongoose from 'mongoose';
 
 
 // @desc    Create a new startup
 // @route   POST /api/startups
 export const createStartup = async (req, res) => {
-  const { name, description, industry, fundingNeeds, pitchDeck } = req.body;
+  const { name, description, industry, fundingNeeds, pitchDeck} = req.body;
 
+  const userId = req.user.id;
   // Validate input
-  if (!name || !description || !industry || !fundingNeeds || !pitchDeck) {
+  if (!name || !description || !industry || !fundingNeeds || !pitchDeck||!userId) {
     return res.status(400).json({ message: 'All fields are required' });
   }
 
@@ -16,7 +16,7 @@ export const createStartup = async (req, res) => {
 
     console.log('Logged-in user:', req.user)
 
-    const userId = new mongoose.Types.ObjectId(req.user.id);
+
 
     // Create the startup with the logged-in user's ID
     const startup = await Startup.create({
@@ -30,6 +30,7 @@ export const createStartup = async (req, res) => {
 
     res.status(201).json(startup);
   } catch (err) {
+    console.log(err);
     console.error('Error in createStartup:', err);
     res.status(500).json({ message: 'Server Error' });
   }

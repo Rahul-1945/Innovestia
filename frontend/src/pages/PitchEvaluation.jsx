@@ -25,7 +25,7 @@ export default function PitchEvaluation() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="flex-grow p-8 bg-gray-100">
+      <main className="flex-grow p-8 bg-gray-100 pt-24">
         <h1 className="text-3xl font-bold mb-6">Pitch Evaluation</h1>
         <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg mb-6">
           <Input
