@@ -31,8 +31,8 @@ ThriveX/
 ### **Frontend (React)**  
 
 - **Home Page**  
-  - Hero section with CTA buttons (Sign Up, Login)  
-  - Features overview & testimonials  
+  - ![image](https://github.com/user-attachments/assets/e28c03c2-37b8-4e19-b800-7e21895b49c7)
+  
 
 - **Signup & Login Pages**  
   - Role-based authentication (Entrepreneur / Investor)  
