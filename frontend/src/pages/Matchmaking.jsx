@@ -27,7 +27,6 @@ export default function Matchmaking() {
     fetchMatches();
   }, []);
 
-  // Helper function to safely access nested properties
   const getDisplayName = (entity, type) => {
     if (!entity) return `Unknown ${type}`;
     if (typeof entity === 'object' && entity.name) return entity.name;
@@ -41,19 +40,11 @@ export default function Matchmaking() {
       <main className="flex-grow px-6 md:px-12 py-8 pt-24 max-w-7xl mx-auto w-full">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Matchmaking</h1>
-          
-          {/* Navigation Buttons */}
           <div className="flex mt-4 md:mt-0 space-x-3">
-            <Link
-              to="/investordashboard"
-              className="px-4 py-2 bg-zinc-950 text-white font-medium rounded-lg shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all"
-            >
+            <Link to="/investordashboard" className="px-4 py-2 bg-zinc-950 text-white font-medium rounded-lg shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all">
               Investor Dashboard
             </Link>
-            <Link
-              to="/investorpreference"
-              className="px-4 py-2 bg-zinc-950 text-white font-medium rounded-lg shadow-sm border hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all"
-            >
+            <Link to="/investorpreference" className="px-4 py-2 bg-zinc-950 text-white font-medium rounded-lg shadow-sm border hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all">
               Investment Preferences
             </Link>
           </div>
@@ -78,10 +69,7 @@ export default function Matchmaking() {
         ) : matches.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-lg shadow-sm">
             <p className="text-gray-600 mb-4">No matches found. Check back later!</p>
-            <button 
-              onClick={() => window.location.reload()} 
-              className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-all"
-            >
+            <button onClick={() => window.location.reload()} className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-all">
               Refresh
             </button>
           </div>
@@ -98,7 +86,6 @@ export default function Matchmaking() {
                       </span>
                     )}
                   </div>
-                  
                   <div className="mb-4">
                     <p className="text-gray-700 text-sm">
                       <span className="font-medium">Startup:</span> {getDisplayName(match.startupId, 'Startup')}
@@ -107,7 +94,6 @@ export default function Matchmaking() {
                       <span className="font-medium">Investor:</span> {getDisplayName(match.investorId, 'Investor')}
                     </p>
                   </div>
-                  
                   {match.matchScore !== undefined && (
                     <div className="flex items-center justify-between mb-4 text-sm">
                       <div className="flex flex-col">
@@ -116,12 +102,8 @@ export default function Matchmaking() {
                       </div>
                     </div>
                   )}
-
-                  {/* Buttons aligned at the bottom */}
                   <div className="mt-auto pt-4 border-t border-gray-100">
-                    <button 
-                      className="w-full px-4 py-2 bg-zinc-950 text-white rounded-lg hover:bg-gray-800 transition-all text-sm font-medium flex items-center justify-center"
-                    >
+                    <button className="w-full px-4 py-2 bg-zinc-950 text-white rounded-lg hover:bg-gray-800 transition-all text-sm font-medium flex items-center justify-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2 17l6 6 12-12" />

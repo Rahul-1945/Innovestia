@@ -26,6 +26,7 @@ export const generateMatches = async (req, res) => {
     await Match.insertMany(matches);
     res.status(201).json(matches);
   } catch (err) {
+    console.error('Error generating matches:', err);
     res.status(500).json({ message: 'Server Error' });
   }
 };
@@ -35,10 +36,11 @@ export const generateMatches = async (req, res) => {
 export const getMatches = async (req, res) => {
   try {
     const matches = await Match.find()
-      .populate('startupId', 'name') // Populate the startup name
-      .populate('investorId', 'name'); // Populate the investor name
+      .populate('startupId', 'name')
+      .populate('investorId', 'name');
     res.json(matches);
   } catch (err) {
+    console.error('Error fetching matches:', err);
     res.status(500).json({ message: 'Server Error' });
   }
 };

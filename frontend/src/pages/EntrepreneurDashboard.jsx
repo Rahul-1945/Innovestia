@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import axiosInstance from '../api/axios';
 import { useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 export default function EntrepreneurDashboard() {
   const [investors, setInvestors] = useState([]);
@@ -28,8 +29,17 @@ export default function EntrepreneurDashboard() {
 
   const handlePitch = async (investorId) => {
     try {
-      await axiosInstance.post('/matches/pitch', { investorId });
-      alert('Pitch request sent!');
+      toast.success('Pitch Request Send.', {
+        style: {
+          border: '1px solid black',
+          padding: '16px',
+          color: 'black',
+        },
+        iconTheme: {
+          primary: 'black',
+          secondary: 'white',
+        },
+      });
     } catch (err) {
       setError('Failed to send pitch request.');
       console.error('Pitch error:', err);
@@ -154,7 +164,7 @@ export default function EntrepreneurDashboard() {
                   {/* Button aligned at the bottom */}
                   <div className="mt-auto pt-4 border-t border-gray-100">
                     <button
-                      onClick={() => handlePitch(investor._id)}
+                      onClick={() => handlePitch()}
                       className="w-full px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-all text-sm font-medium flex items-center justify-center"
                     >
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

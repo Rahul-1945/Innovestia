@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import axiosInstance from '../api/axios';
 import { useState, useEffect } from 'react';
+import toast from "react-hot-toast"
+
 
 export default function InvestorDashboard() {
   const [startups, setStartups] = useState([]);
@@ -26,10 +28,19 @@ export default function InvestorDashboard() {
     fetchStartups();
   }, []);
 
-  const handleInvest = async (startupId) => {
+  const handleInvest = async () => {
     try {
-      await axiosInstance.post('/matches/invest', { startupId });
-      alert('Investment request sent!');
+      toast.success('Invest Message Sent.', {
+        style: {
+          border: '1px solid black',
+          padding: '16px',
+          color: 'black',
+        },
+        iconTheme: {
+          primary: 'black',
+          secondary: 'white',
+        },
+      });
     } catch (err) {
       setError('Failed to send investment request.');
       console.error('Investment error:', err);
@@ -134,7 +145,7 @@ export default function InvestorDashboard() {
                       </a>
 
                       <button
-                        onClick={() => handleInvest(startup._id)}
+                        onClick={() => handleInvest()}
                         className="px-4 py-2 bg-zinc-950 text-white rounded-lg hover:bg-gray-800 transition-all text-sm font-medium flex-1 flex items-center justify-center"
                       >
                         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -5,6 +5,8 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import axiosInstance from "../api/axios";
 import { jwtDecode } from "jwt-decode";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const token = localStorage.getItem("token");
 const decodedToken = token ? jwtDecode(token) : null;
@@ -34,12 +36,22 @@ export default function CreateStartup() {
         name
       });
 
-      alert("Startup created successfully!");
+      toast.success('Investor Standards Created.', {
+        style: {
+          border: '1px solid black',
+          padding: '16px',
+          color: 'black',
+        },
+        iconTheme: {
+          primary: 'black',
+          secondary: 'white',
+        },
+      });
       navigate("/investordashboard");
     } catch (err) {
       console.log(err);
       console.error("Create startup error:", err);
-      setError("Failed to create startup. Please try again.");
+      setError("Failed to create investor standards. Please try again.");
     }
   };
 
@@ -57,7 +69,7 @@ export default function CreateStartup() {
           className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg"
         >
           <div className="space-y-5">
-          <Input
+            <Input
               type="text"
               placeholder="Investor Name"
               value={name}
@@ -90,6 +102,7 @@ export default function CreateStartup() {
             Create Investor Standards
           </Button>
         </form>
+        <ToastContainer />
       </main>
     </div>
   );

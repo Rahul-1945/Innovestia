@@ -5,6 +5,8 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 import axiosInstance from "../api/axios";
 import { jwtDecode } from "jwt-decode";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const token = localStorage.getItem("token");
 const decodedToken = token ? jwtDecode(token) : null;
@@ -30,7 +32,15 @@ export default function CreateStartup() {
         pitchDeck: pitchdeck,
         userId
       });
-      alert("Startup created successfully!");
+      toast.success("Startup created successfully!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       navigate("/entrepreneurdashboard");
     } catch (err) {
       console.log(error);
@@ -92,6 +102,7 @@ export default function CreateStartup() {
             Create Startup
           </Button>
         </form>
+        <ToastContainer />
       </main>
     </div>
   );
