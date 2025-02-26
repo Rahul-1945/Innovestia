@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar';
 import Button from '../components/Button';
-import bgImage from '../assets/pexels-pixabay-301614.jpg';
+import bgImage from '../assets/stevee.png';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -11,12 +11,12 @@ export default function Home() {
       {/* Hero Section */}
       <main 
         className="h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat relative"
-        style={{ backgroundImage: `url(${bgImage})` }}
+        style={{ backgroundImage: `url(${bgImage})`}}
       >
         {/* Subtle dark gradient overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20"></div> */}
         
-        <div className="text-center px-4 relative z-10 mb-60  py-12 px-16 ">
+        <div className="text-center  relative z-10 mb-60  py-12 px-16 mr-100 mt-70 ">
           <h1 className="text-5xl font-bold mb-4 text-zinc-950">Welcome to THRIVE X</h1>
           <p className="text-xl mb-8 text-zinc-950">AI-powered startup funding made simple.</p>
           <Button className="transform transition-transform duration-300 hover:scale-105 shadow-lg">

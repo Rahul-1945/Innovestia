@@ -35,8 +35,15 @@ export default function Signup() {
         password,
         role, // Include the selected role
       });
-      localStorage.setItem('token', response.data.token); // Save token to localStorage
-      navigate('/entrepreneurdashboard'); // Redirect to dashboard
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('role', response.data.role); // Store role in localStorage
+
+    // Redirect user based on role
+    if (role2 === 'investor') {
+      navigate('/investordashboard');
+    } else {
+      navigate('/entrepreneurdashboard');
+    }
     } catch (err) {
       setError('Signup failed. Please try again.');
       console.error('Signup error:', err);

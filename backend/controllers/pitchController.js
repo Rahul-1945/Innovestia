@@ -3,10 +3,11 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import mongoose from 'mongoose';
 import { marked } from 'marked';
 
-const genAI = new GoogleGenerativeAI('AIzaSyAOXWmektkV5iGspR36GwJqwFlAMnOLiEI');
+const genAI = new GoogleGenerativeAI('AIzaSyCVHv8rh7vlDaW03_3JjTMBFOspT3yLO8U');
 
 // @desc    Evaluate pitch
 // @route   POST /api/pitch-evaluation
+
 export const evaluatePitch = async (req, res) => {
   const { pitchDeck } = req.body;
   
@@ -17,7 +18,7 @@ export const evaluatePitch = async (req, res) => {
   try {
     // Get the generative model
     const startupId = new mongoose.Types.ObjectId(req.user.id);
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     
     // Define the prompt with explicit formatting guidance
     const prompt = `
@@ -49,7 +50,7 @@ export const evaluatePitch = async (req, res) => {
     Add double line breaks between sections for better readability.
     `;
     
-    const result = await model.generateContent(prompt);
+    const result = await model.generateContent({contents: [{ parts: [{ text: prompt }] }],});
     const response = await result.response;
     
     const evaluationResult = response.text();

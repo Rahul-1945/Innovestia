@@ -1,10 +1,14 @@
 import BusinessPlan from '../models/BusinessPlan.js';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import mongoose from 'mongoose';
-import { marked } from 'marked'; // You'll need to install this package
+import { marked } from 'marked';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 // Initialize Gemini API
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'AIzaSyAOXWmektkV5iGspR36GwJqwFlAMnOLiEI');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'AIzaSyCVHv8rh7vlDaW03_3JjTMBFOspT3yLO8U');
 
 /**
  * Generate a business plan using Gemini API
@@ -13,61 +17,56 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'AIzaSyAOXWme
 export const generateBusinessPlan = async (req, res) => {
   const { startupDetails } = req.body;
 
-  // Validate input
   if (!startupDetails) {
     return res.status(400).json({ message: "Startup idea is required" });
   }
 
   try {
     const startupId = new mongoose.Types.ObjectId(req.user.id);
-    
-    // Get the generative model
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    // Define an enhanced prompt that encourages properly formatted output
     const prompt = `
-      Generate a detailed, well-structured business plan for the following startup:
+      Generate a structured business plan for the following startup idea:
       
       ${startupDetails}
       
-      Format the business plan with clear section headings using markdown syntax (e.g., ## Executive Summary).
+      Format the business plan using markdown with these sections:
+      ## Executive Summary
+      ## Company Description
+      ## Market Analysis
+      ## Organization & Management
+      ## Service or Product Line
+      ## Marketing & Sales Strategy
+      ## Financial Projections
+      ## Funding Requirements (if applicable)
       
-      Include the following sections:
-      1. Executive Summary
-      2. Company Description
-      3. Market Analysis
-      4. Organization & Management
-      5. Service or Product Line
-      6. Marketing & Sales Strategy
-      7. Financial Projections
-      8. Funding Requirements (if applicable)
-      
-      Use proper formatting with bullet points, numbered lists, and paragraph breaks to make the content easy to read.
-      Make the writing style professional, concise, and impactful.
+      Ensure clarity with bullet points, numbered lists, and professional writing.
     `;
 
-    // Generate content using Gemini API
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    let planContent = response.text();
+    // Generate content
+    const result = await model.generateContent({ contents: [{ parts: [{ text: prompt }] }] });
+    const response = result.response;
+    const planContent = response.text();
+
+    marked.setOptions({
+      breaks: true,
+      gfm: true
+    });
     
-    // Convert markdown to HTML for better rendering
+    
+    // Convert markdown to HTML
     const htmlContent = marked(planContent);
-    
-    // Save both the raw and formatted content
+
+    // Save to DB
     const businessPlan = await BusinessPlan.create({
       startupId,
       planContent,
       formattedContent: htmlContent
     });
 
-    // Return the generated business plan with both formats
-    res.status(201).json({
-      ...businessPlan.toObject(),
-      formattedContent: htmlContent
-    });
+    res.status(201).json({ ...businessPlan.toObject(), formattedContent: htmlContent });
   } catch (err) {
-    console.error('Error in generateBusinessPlan (Gemini API):', err);
+    console.error('Error in generateBusinessPlan:', err);
     res.status(500).json({ message: 'Server Error' });
   }
 };
