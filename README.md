@@ -31,9 +31,7 @@ ThriveX/
 ### **Frontend (React)**  
 
  # Home Page  
-   ![image](https://github.com/user-attachments/assets/984cbffb-230b-46ce-9adb-ac702748b3a2)
-
-  
+  ![Screenshot 2025-02-28 214405](https://github.com/user-attachments/assets/8260985d-e7e1-4a90-b4c1-fa1cb33b93ab)
 
 # Signup & Login Pages
 ![image](https://github.com/user-attachments/assets/3d8052e0-8fd5-4096-a6ca-c06bd55f733a)
