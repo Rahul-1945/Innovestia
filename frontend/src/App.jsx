@@ -9,6 +9,8 @@ import InvestorDashboard from './pages/InvestorDashboard';
 import EntrepreneurDashboard from './pages/EntrepreneurDashboard';
 import CreateStartup from './pages/CreateStartup';
 import InvestorPreference from './pages/InvestorPreference'
+import SubscriptionPage from './pages/SubscriptionPage';
+import InvestmentForm from './pages/InvestmentForm';
 
 export default function App() {
   return (
@@ -24,6 +26,8 @@ export default function App() {
         <Route path="/business-plan" element={<BusinessPlan />} />
         <Route path="/createstartup" element={<CreateStartup />} />
         <Route path="/investorpreference" element={<InvestorPreference/>} />
+        <Route path="/sub" element={<SubscriptionPage/>} />
+        <Route path="/invest/:startupId" element={<InvestmentForm />} />
       
       </Routes>
     </Router>

@@ -9,6 +9,7 @@ import pitchRoutes from './routes/pitchRoutes.js';
 import businessPlanRoutes from './routes/businessPlanRoutes.js';
 import { protect } from './middleware/authMiddleware.js';
 import cors from 'cors';
+import investmentRoutes from './routes/investment.js'
 
 dotenv.config();
 connectDB();
@@ -24,7 +25,7 @@ app.use('/api/investors', protect, investorRoutes);
 app.use('/api/matches', protect, matchRoutes);
 app.use('/api/pitch-evaluation', protect, pitchRoutes);
 app.use('/api/business-plans', protect, businessPlanRoutes);
-
+app.use('/api/investment',protect, investmentRoutes);
 const PORT = process.env.PORT || 3000;
 
 export default app;

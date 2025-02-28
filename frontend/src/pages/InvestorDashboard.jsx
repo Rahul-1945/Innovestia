@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
+import Sidebar from '../components/Sidebar'; // Import the new Sidebar component
 import axiosInstance from '../api/axios';
 import { useState, useEffect } from 'react';
-import toast from "react-hot-toast"
-
+import { useNavigate } from 'react-router-dom';
 
 export default function InvestorDashboard() {
   const [startups, setStartups] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStartups = async () => {
@@ -28,28 +29,15 @@ export default function InvestorDashboard() {
     fetchStartups();
   }, []);
 
-  const handleInvest = async () => {
-    try {
-      toast.success('Invest Message Sent.', {
-        style: {
-          border: '1px solid black',
-          padding: '16px',
-          color: 'black',
-        },
-        iconTheme: {
-          primary: 'black',
-          secondary: 'white',
-        },
-      });
-    } catch (err) {
-      setError('Failed to send investment request.');
-      console.error('Investment error:', err);
-    }
+  const handleInvest = (startupId) => {
+    navigate(`/invest/${startupId}`);
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+      
       <Navbar />
+      <Sidebar />
       <main className="flex-grow px-6 md:px-12 py-8 pt-24 max-w-7xl mx-auto w-full">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Investor Dashboard</h1>
@@ -64,7 +52,7 @@ export default function InvestorDashboard() {
             </Link>
             <Link
               to="/investorpreference"
-              className="px-4 py-2 bg-zinc-950 text-white font-medium rounded-lg shadow-sm border  hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all"
+              className="px-4 py-2 bg-zinc-950 text-white font-medium rounded-lg shadow-sm border hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all"
             >
               Investment Preferences
             </Link>
@@ -145,7 +133,7 @@ export default function InvestorDashboard() {
                       </a>
 
                       <button
-                        onClick={() => handleInvest()}
+                        onClick={() => handleInvest(startup._id)}
                         className="px-4 py-2 bg-zinc-950 text-white rounded-lg hover:bg-gray-800 transition-all text-sm font-medium flex-1 flex items-center justify-center"
                       >
                         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -161,6 +149,7 @@ export default function InvestorDashboard() {
           </div>
         )}
       </main>
+      
     </div>
   );
 }

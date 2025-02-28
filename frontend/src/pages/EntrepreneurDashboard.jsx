@@ -4,11 +4,15 @@ import Card from '../components/Card';
 import axiosInstance from '../api/axios';
 import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import Sidebar from '../components/Sidebar';
+import { useParams } from 'react-router-dom';
 
 export default function EntrepreneurDashboard() {
   const [investors, setInvestors] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+
+  const { startupId } = useParams();
 
   useEffect(() => {
     const fetchInvestors = async () => {
@@ -70,6 +74,7 @@ export default function EntrepreneurDashboard() {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+      {/* <Sidebar startupId={startupId}/> */}
       <Navbar />
       <main className="flex-grow px-6 md:px-12 py-8 pt-24 max-w-7xl mx-auto w-full">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
