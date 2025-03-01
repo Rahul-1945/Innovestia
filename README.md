@@ -1,3 +1,5 @@
+![Hackathon Winner](https://img.shields.io/badge/Gidy%20Hackathon-Runner--Up-brightgreen)
+
 # ThriveX   
 
 ThriveX is an AI-powered startup-investor matchmaking platform designed to help entrepreneurs connect with the right investors. It leverages AI to evaluate business pitches, generate business plans, and analyze investor sentiment to facilitate funding opportunities.  
@@ -31,7 +33,8 @@ ThriveX/
 ### **Frontend (React)**  
 
  # Home Page  
-  ![Screenshot 2025-02-28 214405](https://github.com/user-attachments/assets/8260985d-e7e1-4a90-b4c1-fa1cb33b93ab)
+ ![image](https://github.com/user-attachments/assets/03732930-df36-465a-a1d1-08d9dcc896ba)
+
 
 # Signup & Login Pages
 ![image](https://github.com/user-attachments/assets/3d8052e0-8fd5-4096-a6ca-c06bd55f733a)
@@ -59,11 +62,16 @@ ThriveX/
 # Business Plan Generator
   ![image](https://github.com/user-attachments/assets/4a5a0ee0-3d66-4874-9218-935a4ac0cda3)
 
+# Invest Details
+
+![image](https://github.com/user-attachments/assets/95634656-588b-4d68-930d-c21b54290d3c)
+
+
 
 ### **Backend (Node.js + Express + MongoDB)**  
 
 - **User Authentication** (JWT-based)  
-- **AI Processing** (Pitch evaluation, matchmaking, sentiment analysis)  
+- **AI Processing** (Pitch evaluation, matchmaking, sentiment analysis,Business Plan Generation)  
 - **Database Storage** (Startups, investors, matches)  
 
 ## 🚀 Installation Guide  
