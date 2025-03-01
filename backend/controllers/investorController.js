@@ -12,7 +12,7 @@ export const createInvestor = async (req, res) => {
     }
 
     const investor = await Investor.create({
-      userId: new mongoose.Types.ObjectId(userId),
+      userId,
       investmentCapacity,
       riskLevel,
       industryPreferences,

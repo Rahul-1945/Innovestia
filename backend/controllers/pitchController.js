@@ -2,8 +2,12 @@ import PitchEvaluation from '../models/PitchEvaluation.js';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import mongoose from 'mongoose';
 import { marked } from 'marked';
+import dotenv from 'dotenv';
 
-const genAI = new GoogleGenerativeAI('AIzaSyCVHv8rh7vlDaW03_3JjTMBFOspT3yLO8U');
+// Load environment variables
+dotenv.config();
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // @desc    Evaluate pitch
 // @route   POST /api/pitch-evaluation

@@ -47,6 +47,10 @@ export const getStartups = async (req, res) => {
   }
 };
 
+
+
+
+
 // @desc    Get a specific startup
 // @route   GET /api/startups/:id
 export const getStartupById = async (req, res) => {

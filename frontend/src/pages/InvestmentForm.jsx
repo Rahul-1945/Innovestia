@@ -135,7 +135,7 @@ export default function InvestmentForm() {
                       name="investorName"
                       value={formData.investorName}
                       onChange={handleChange}
-                      className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                      className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 transition-all"
                       placeholder="Your full name"
                       required
                     />
@@ -148,7 +148,7 @@ export default function InvestmentForm() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                      className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 transition-all"
                       placeholder="your.email@example.com"
                       required
                     />
@@ -162,7 +162,7 @@ export default function InvestmentForm() {
                     value={formData.message}
                     onChange={handleChange}
                     rows="6"
-                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                    className="block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-zinc-950 focus:border-zinc-950 transition-all"
                     placeholder="Introduce yourself and explain why you're interested in investing..."
                     required
                   />
@@ -173,11 +173,11 @@ export default function InvestmentForm() {
                     id="terms"
                     name="terms"
                     type="checkbox"
-                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-zinc-950 focus:ring-zinc-950 border-gray-300 rounded"
                     required
                   />
                   <label htmlFor="terms" className="ml-2 block text-sm text-gray-700">
-                    I agree to the <a href="#" className="text-indigo-600 hover:text-indigo-500">terms and conditions</a>
+                    I agree to the <a href="#" className="text-blue-600 hover:text-zinc-950">terms and conditions</a>
                   </label>
                 </div>
                 

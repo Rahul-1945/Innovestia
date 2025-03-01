@@ -12,11 +12,18 @@ export const generateMatches = async (req, res) => {
     const matches = [];
     startups.forEach((startup) => {
       investors.forEach((investor) => {
-        if (startup.industry === investor.industryPreferences[0]) {
-          const matchScore = Math.floor(Math.random() * 100); // Example scoring logic
+        if (investor.industryPreferences.includes(startup.industry)) { // Better matching
+          let matchScore = 0;
+
+          // Industry match bonus
+          matchScore += 40;
+
+          // Random slight variation to differentiate similar matches
+          matchScore += Math.floor(Math.random() * 10);
+
           matches.push({
             startupId: startup._id,
-            investorId: investor._id,
+            investorId: investor.userId,
             matchScore,
           });
         }
@@ -24,12 +31,15 @@ export const generateMatches = async (req, res) => {
     });
 
     await Match.insertMany(matches);
+    console.log('Generated matches:', matches);
+    console.log(investors.userId);
     res.status(201).json(matches);
   } catch (err) {
     console.error('Error generating matches:', err);
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
 
 // @desc    Get all matches
 // @route   GET /api/matches
@@ -38,6 +48,7 @@ export const getMatches = async (req, res) => {
     const matches = await Match.find()
       .populate('startupId', 'name')
       .populate('investorId', 'name');
+    console.log('Fetched matches:', matches); // Log fetched matches
     res.json(matches);
   } catch (err) {
     console.error('Error fetching matches:', err);

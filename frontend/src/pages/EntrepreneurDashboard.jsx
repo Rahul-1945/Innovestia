@@ -100,6 +100,12 @@ export default function EntrepreneurDashboard() {
             >
               Business Plan
             </Link>
+            <Link
+              to="/matchmaking"
+              className="px-4 py-2 bg-zinc-950 text-white font-medium rounded-lg shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all"
+            >
+              Matchmaking
+            </Link>
           </div>
         </div>
 
