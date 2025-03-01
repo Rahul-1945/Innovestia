@@ -33,7 +33,7 @@ export default function Navbar() {
               onClick={handleHomeClick}
               className="text-2xl font-bold text-black hover:text-gray-700 transition-colors duration-200"
             >
-              THRIVE X
+              Thrive X
             </Link>
           </div>
           <div className="flex items-center space-x-4">

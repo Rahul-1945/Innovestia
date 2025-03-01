@@ -9,7 +9,7 @@ export default function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('entrepreneur'); // Default role
+  const [role, setRole] = useState('entrepreneur');
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
@@ -17,7 +17,6 @@ export default function Signup() {
 
   useEffect(() => {
     if (token) {
-      // Redirect based on role
       if (role1 === 'investor') {
         navigate('/investordashboard');
       } else if (role1 === 'entrepreneur') {
@@ -33,10 +32,10 @@ export default function Signup() {
         name,
         email,
         password,
-        role, // Include the selected role
+        role, 
       });
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('role', response.data.role); // Store role in localStorage
+      localStorage.setItem('role', response.data.role);
 
     // Redirect user based on role
     if (role === 'investor') {

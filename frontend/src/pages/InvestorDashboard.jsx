@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
-import Sidebar from '../components/Sidebar'; // Import the new Sidebar component
 import axiosInstance from '../api/axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -37,7 +36,7 @@ export default function InvestorDashboard() {
     <div className="flex flex-col min-h-screen bg-gray-50">
       
       <Navbar />
-      <Sidebar />
+      {/* <Sidebar /> */}
       <main className="flex-grow px-6 md:px-12 py-8 pt-24 max-w-7xl mx-auto w-full">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Investor Dashboard</h1>

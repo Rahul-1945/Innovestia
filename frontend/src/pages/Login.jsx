@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('entrepreneur'); // Default role
+  const [role, setRole] = useState('entrepreneur');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -33,10 +33,10 @@ export default function Login() {
       const response = await axiosInstance.post('/auth/login', {
         email,
         password,
-        role, // Include the selected role
+        role, 
       });
-      localStorage.setItem('token', response.data.token); // Save token to localStorage
-      localStorage.setItem('role', response.data.role); // Save role to localStorage
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('role', response.data.role); 
       if(role==='investor')
       {
         navigate('/investordashboard');
@@ -44,7 +44,6 @@ export default function Login() {
       else{
         navigate('/entrepreneurdashboard');
       }
-       // Redirect to dashboard
     } catch (err) {
       setError('Invalid email, password, or role.');
       console.error('Login error:', err);
