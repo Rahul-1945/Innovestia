@@ -4,8 +4,6 @@
 
 ThriveX is an AI-powered startup-investor matchmaking platform designed to help entrepreneurs connect with the right investors. It leverages AI to evaluate business pitches, generate business plans, and analyze investor sentiment to facilitate funding opportunities.  
 
-
-
 ## 🌟 Features  
 
 - **AI-Powered Startup-Investor Matching**  
@@ -73,7 +71,7 @@ ThriveX/
 ### **Backend (Node.js + Express + MongoDB)**  
 
 - **User Authentication** (JWT-based)  
-- **AI Processing** (Pitch evaluation, matchmaking, sentiment analysis)  
+- **AI Processing** (Pitch evaluation, matchmaking, sentiment analysis,Business Plan Generation)  
 - **Database Storage** (Startups, investors, matches)  
 
 ## 🚀 Installation Guide  
