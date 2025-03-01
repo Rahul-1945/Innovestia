@@ -57,7 +57,8 @@ ThriveX/
 
 
 # Matchmaking Page
-![image](https://github.com/user-attachments/assets/16e5a524-4493-4387-94ab-21d0df9c47e5)  
+![image](https://github.com/user-attachments/assets/8b3bed2a-65e3-49e3-b6e1-f777afc14845)
+
 
 # Business Plan Generator
   ![image](https://github.com/user-attachments/assets/4a5a0ee0-3d66-4874-9218-935a4ac0cda3)
