@@ -9,11 +9,11 @@ import InvestorDashboard from './pages/InvestorDashboard';
 import EntrepreneurDashboard from './pages/EntrepreneurDashboard';
 import CreateStartup from './pages/CreateStartup';
 import InvestorPreference from './pages/InvestorPreference'
-//import SubscriptionPage from './pages/SubscriptionPage';
+import SubscriptionPage from './pages/SubscriptionPage';
 import InvestmentForm from './pages/InvestmentForm';
 import HostPitch from './pages/HostPitch';
 import CreatePitchPage from './pages/CreatePitchPage';
-
+import VirtualEvents from './pages/VirtualEvents';
 
 
 export default function App() {
@@ -35,6 +35,7 @@ export default function App() {
         <Route path="/host-pitch" element={<HostPitch />} />
 <Route path="/create-pitch" element={<CreatePitchPage />} /> {/* Coming Soon */}
 <Route path="/create-pitch" element={<CreatePitchPage />} />
+<Route path="/virtual-events" element={<VirtualEvents />} />
 
       </Routes>
     </Router>

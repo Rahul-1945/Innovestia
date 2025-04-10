@@ -30,11 +30,14 @@ export default function InvestorDashboard() {
 
   const handleInvest = (startupId) => {
     navigate(`/invest/${startupId}`);
+
   };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
+      
       <Navbar />
+      {/* <Sidebar /> */}
       <main className="flex-grow px-6 md:px-12 py-8 pt-24 max-w-7xl mx-auto w-full">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Investor Dashboard</h1>
@@ -43,21 +46,15 @@ export default function InvestorDashboard() {
           <div className="flex mt-4 md:mt-0 space-x-3">
             <Link
               to="/matchmaking"
-              className="px-4 py-2 bg-zinc-950 text-white font-medium rounded-lg shadow-sm hover:bg-gray-800 transition-all"
+              className="px-4 py-2 bg-zinc-950 text-white font-medium rounded-lg shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all"
             >
               Matchmaking
             </Link>
             <Link
               to="/investorpreference"
-              className="px-4 py-2 bg-zinc-950 text-white font-medium rounded-lg shadow-sm hover:bg-gray-800 transition-all"
+              className="px-4 py-2 bg-zinc-950 text-white font-medium rounded-lg shadow-sm border hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all"
             >
               Investment Preferences
-            </Link>
-            <Link
-              to="/virtual-events"
-              className="px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg shadow-sm hover:bg-indigo-700 transition-all"
-            >
-              Host Virtual Pitch Event
             </Link>
           </div>
         </div>
@@ -120,6 +117,7 @@ export default function InvestorDashboard() {
                     )}
                   </div>
 
+                  {/* Buttons aligned at the bottom */}
                   <div className="mt-auto pt-4 border-t border-gray-100">
                     <div className="flex flex-col sm:flex-row gap-3">
                       <a 
@@ -128,7 +126,7 @@ export default function InvestorDashboard() {
                         rel="noopener noreferrer" 
                         className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all text-sm font-medium flex items-center justify-center"
                       >
-                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
                         Pitch Deck
@@ -138,7 +136,7 @@ export default function InvestorDashboard() {
                         onClick={() => handleInvest(startup._id)}
                         className="px-4 py-2 bg-zinc-950 text-white rounded-lg hover:bg-gray-800 transition-all text-sm font-medium flex-1 flex items-center justify-center"
                       >
-                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
                         Invest
@@ -151,6 +149,7 @@ export default function InvestorDashboard() {
           </div>
         )}
       </main>
+      
     </div>
   );
 }
