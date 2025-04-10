@@ -6,16 +6,24 @@ import generateToken from '../utils/generateToken.js';
 // @route   POST /api/auth/signup
 export const signup = async (req, res) => {
   const { name, email, password, role } = req.body;
+
+  // Basic validation
+  if (!name || !email || !password || !role) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
+
   try {
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const user = await User.create({
       name,
       email,
-      password: bcrypt.hashSync(password, 10),
+      password: hashedPassword,
       role,
     });
 
@@ -27,6 +35,7 @@ export const signup = async (req, res) => {
       token: generateToken(user._id),
     });
   } catch (err) {
+    console.error('Signup error:', err.message);
     res.status(500).json({ message: 'Server Error' });
   }
 };
@@ -35,6 +44,10 @@ export const signup = async (req, res) => {
 // @route   POST /api/auth/login
 export const login = async (req, res) => {
   const { email, password, role } = req.body;
+
+  if (!email || !password || !role) {
+    return res.status(400).json({ message: 'All fields are required' });
+  }
 
   try {
     const user = await User.findOne({ email });
@@ -57,6 +70,7 @@ export const login = async (req, res) => {
       token,
     });
   } catch (err) {
+    console.error('Login error:', err.message);
     res.status(500).json({ message: 'Server Error' });
   }
 };

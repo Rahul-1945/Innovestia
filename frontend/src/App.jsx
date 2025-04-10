@@ -9,8 +9,12 @@ import InvestorDashboard from './pages/InvestorDashboard';
 import EntrepreneurDashboard from './pages/EntrepreneurDashboard';
 import CreateStartup from './pages/CreateStartup';
 import InvestorPreference from './pages/InvestorPreference'
-import SubscriptionPage from './pages/SubscriptionPage';
+//import SubscriptionPage from './pages/SubscriptionPage';
 import InvestmentForm from './pages/InvestmentForm';
+import HostPitch from './pages/HostPitch';
+import CreatePitchPage from './pages/CreatePitchPage';
+
+
 
 export default function App() {
   return (
@@ -28,7 +32,10 @@ export default function App() {
         <Route path="/investorpreference" element={<InvestorPreference/>} />
         <Route path="/sub" element={<SubscriptionPage/>} />
         <Route path="/invest/:startupId" element={<InvestmentForm />} />
-      
+        <Route path="/host-pitch" element={<HostPitch />} />
+<Route path="/create-pitch" element={<CreatePitchPage />} /> {/* Coming Soon */}
+<Route path="/create-pitch" element={<CreatePitchPage />} />
+
       </Routes>
     </Router>
   );

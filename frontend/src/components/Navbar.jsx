@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -24,50 +25,45 @@ export default function Navbar() {
   };
 
   return (
-    <nav className=" fixed w-dvw backdrop-blur-md z-1">
+    <motion.nav
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+      className="fixed w-full z-50 bg-white/60 backdrop-blur-md shadow-md"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-            <Link
-              to="/"
-              onClick={handleHomeClick}
-              className="text-2xl font-bold text-black hover:text-gray-700 transition-colors duration-200"
-            >
-              Thrive X
-            </Link>
-          </div>
+        <div className="flex justify-between h-16 items-center">
+          {/* Logo */}
+          <Link
+            to="/"
+            onClick={handleHomeClick}
+            className="text-2xl font-extrabold text-indigo-900 hover:text-indigo-600 transition-colors duration-300"
+          >
+            Innovestia
+          </Link>
+
+          {/* Right section */}
           <div className="flex items-center space-x-4">
             {token ? (
               <>
-                {role === 'investor' &&  (
-                  <>
-                  <Link to ='/sub'>
-                  <button
-                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-all font-medium text-sm"
-                >
-                  ThriveX +
-                </button>
-                </Link>
-                  </>
-                )}
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-all font-medium text-sm"
+                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition duration-300 text-sm font-medium"
                 >
                   Logout
                 </button>
               </>
             ) : (
               <>
-                <Link 
-                  to="/login" 
-                  className="text-black hover:text-gray-700 transition-colors duration-200"
+                <Link
+                  to="/login"
+                  className="text-sm text-gray-800 hover:text-indigo-700 transition-colors font-medium"
                 >
                   Login
                 </Link>
-                <Link 
-                  to="/signup" 
-                  className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-all font-medium text-sm"
+                <Link
+                  to="/signup"
+                  className="px-4 py-2 bg-indigo-700 text-white rounded-lg hover:bg-indigo-800 shadow-md transition duration-300 text-sm font-medium"
                 >
                   Signup
                 </Link>
@@ -76,6 +72,6 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
